@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Compra</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+	<h:link hreflang="#{log.regresar()}"></h:link>
+</h:head>
+<h:body>
+	<div id="container">
+		<div id="nav">
+			<ul>
+				<li><a href="Administrador.xhtml">Volver a Administrador</a></li>
+			</ul>
+		</div>
+
+		<div id="topbox">
+			<h1>Compras a Proveedor</h1>
+		</div>
+
+		<div id="compra">
+
+			<h:form id="FormCompra">
+				<h3>Ingresa los Datos Necesarios De la Compra Realizada</h3>
+				<h6>*Todos los campos son necesarios</h6>
+
+				<ul style="height: 152px; width: 846px">
+
+					<li style="width: 323px;">Seleccione Id de Producto: <h:selectOneMenu
+							id="Producto" value="#{compra.idProducto}"
+							valueChangeListener="#{compra.cargaProducto}"
+							onchange="submit();">
+							<f:selectItems value="#{compra.listaItemProducto}" />
+						</h:selectOneMenu>
+					</li>
+
+					<br />
+					<li style="width: 329px;">Especifique la Cantidad <h:inputText
+							id="Cantidad" value="#{compra.cantidad}" required="true"
+							validatorMessage="Cantidad Erronea">
+							<f:validateLongRange for="cant" minimum="1" />
+						</h:inputText><br /> <h:message for="Cantidad" style="color:red" />
+					</li>
+					<br />
+					<li style="width: 319px;">Fecha de la compra yyyy-M-d <rich:calendar
+							id="Fecha" datePattern="yyyy-M-d" value="#{compra.fecha}"
+							required="true" validatorMessage="Ingrese Fecha" /> <h:message
+							for="Fecha" style="color:red"></h:message>
+					</li>
+					<br />
+					<li style="width: 91px;"><h:commandButton value="Hecho"
+							onclick="#{compra.crearCompra()}"
+							style="height: 33px; width: 80px; "></h:commandButton></li>
+				</ul>
+				<h:outputLabel value="#{compra.compraHecha}" style="color:blue"></h:outputLabel>
+				<h:commandButton value="Limpiar" type="reset"
+					onclick="#{compra.limpiar()}" immediate="true"></h:commandButton>
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>

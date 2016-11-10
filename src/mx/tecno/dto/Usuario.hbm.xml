@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/11/2011 09:30:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="mx.tecno.dto.Usuario" table="usuario">
+        <id name="idusuario" type="java.lang.Integer">
+            <column name="idusuario" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="45" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="45" not-null="true" />
+        </property>
+        <property name="tipoUsuario" type="boolean">
+            <column name="tipo_usuario" not-null="true" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="45" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <set name="ventas" table="venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_idusuario" not-null="true" />
+            </key>
+            <one-to-many class="mx.tecno.dto.Venta" />
+        </set>
+        <set name="compras" table="compra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_idusuario" not-null="true" />
+            </key>
+            <one-to-many class="mx.tecno.dto.Compra" />
+        </set>
+    </class>
+</hibernate-mapping>

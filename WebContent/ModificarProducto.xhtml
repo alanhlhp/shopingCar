@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Modificar Producto</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+</h:head>
+<h:body>
+	<h:form id="formModificarProducto">
+		<div id="nav" style="width: 1175px; ">
+				<ul>
+					<li><a href="Administrador.xhtml">Volver a Administrador</a></li>
+				</ul>
+			</div>
+
+			<center>
+				<div id="topbox">
+					<h1>* Modifica un Producto *</h1>
+				</div>
+			</center>
+
+			<center>
+				<rich:panel style="width:930px;height:260px">
+					<f:facet name="header">
+     		   Modificar Producto
+               </f:facet>
+
+					<h:graphicImage value="/images/logo.jpg" style="float:right"
+						alt="rf" />
+				<h:panelGrid columns="4">
+
+					<h:outputLabel value="" />
+
+					<h:commandButton type="submit" value="buscar" style="width:80px"
+						immediate="true" action="#{modificarProducto.buscarProducto()}" />
+
+					<h:outputLabel value="" />
+					<br></br>
+
+					<h:outputLabel value="Nombre Producto" />
+
+					<h:inputText id="nombreM" autocomplete="off"
+						value="#{modificarProducto.nombreProducto}"
+						disabled="#{modificarProducto.productoDesabilitado}"
+						required="true"
+						validator="#{modificarProducto.validarExisteProducto}">
+						<a4j:ajax event="keyup" execute="@this"></a4j:ajax>
+
+					</h:inputText>
+
+
+					<h:outputLabel value="Nombre" />
+					<h:inputText id="nombre"
+						value="#{modificarProducto.producto.nombre}" required="true"
+						validator="#{modificarProducto.validarRepeticionProducto2}">
+						<f:validateRegex pattern="[a-zA-Z ]*" />
+					</h:inputText>
+
+					<br></br>
+					<rich:message for="nombreM" ajaxRendered="true"></rich:message>
+					<h:outputLabel value="" />
+					<rich:message for="nombre" ajaxRendered="false"></rich:message>
+
+
+					<h:outputLabel value="Modelo" />
+					<h:inputText id="modelo"
+						value="#{modificarProducto.producto.modelo}" required="true"
+						validatorMessage="Solo Letras">
+						<f:validateRegex pattern="[a-zA-Z ]*" />
+					</h:inputText>
+
+
+
+					<h:outputLabel value="Marca" />
+					<h:inputText id="marca" value="#{modificarProducto.producto.marca}"
+						required="true" validatorMessage="Solo Letras">
+						<f:validateRegex pattern="[a-zA-Z]*" />
+					</h:inputText>
+
+					<br></br>
+					<rich:message for="modelo" ajaxRendered="true"></rich:message>
+					<h:outputLabel value="" />
+					<rich:message for="nmarca" ajaxRendered="false"></rich:message>
+
+					<h:outputLabel value="Existencia" />
+					<h:inputText id="existencia"
+						value="#{modificarProducto.existencia}" required="true"
+						validatorMessage="Formato Invalido">
+						<f:validateRegex pattern="[0-9]*" />
+
+					</h:inputText>
+
+					<h:outputLabel value="Precio" />
+					<h:inputText id="precio" value="#{modificarProducto.precio}"
+						required="true" validatorMessage="Entero o Decimal">
+						<f:validateRegex pattern="^([0-9]*|\d*\.\d{1}?\d*)$" />
+					</h:inputText>
+
+
+					<br></br>
+					<rich:message for="existencia" ajaxRendered="true"></rich:message>
+					<h:outputLabel value="" />
+					<rich:message for="precio" ajaxRendered="false"></rich:message>
+
+					<h:outputLabel value="Detalles" />
+					<h:inputTextarea id="detalles"
+						value="#{modificarProducto.producto.detalles}" />
+
+
+
+					<h:outputLabel value="Categoria" />
+					<h:inputText id="categoria"
+						value="#{modificarProducto.producto.categoria}" required="true"
+						validatorMessage="Solo Letras">
+						<f:validateRegex pattern="[a-zA-Z ]*" />
+					</h:inputText>
+
+					<br></br>
+					<rich:message for="detalles" ajaxRendered="true"></rich:message>
+					<h:outputLabel value="" />
+					<rich:message for="categoria" ajaxRendered="false"></rich:message>
+
+
+
+
+					<h:commandButton type="submit" value="Modificar" style="width:80px"
+						action="#{modificarProducto.modificarProducto()}"></h:commandButton>
+					<h:commandButton
+						action="#{modificarProducto.limpiarModificarProducto()}"
+						style="width:80px" value="Limpiar" immediate="true" />
+
+				</h:panelGrid>
+		
+		</rich:panel>
+		</center>
+	</h:form>
+</h:body>
+</html>

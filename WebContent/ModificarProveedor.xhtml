@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Modificar Proveedor</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+</h:head>
+<h:body>
+	<h:form id="formModificarProveedor">
+		<div id="nav" style="width: 1174px; ">
+				<ul>
+					<li><a href="Administrador.xhtml">Volver a Administrador</a></li>
+				</ul>
+			</div>
+
+			<center>
+				<div id="topbox">
+					<h1>* Modifica un Proveedor *</h1>
+				</div>
+			</center>
+
+			<center>
+				<rich:panel style="width:930px;height:260px">
+					<f:facet name="header">
+     		   Modificar Proveedor
+               </f:facet>
+
+					<h:graphicImage value="/images/logo.jpg" style="float:right"
+						alt="rf" />
+				<h:panelGrid columns="4">
+
+					<h:outputLabel value="" />
+
+					<h:commandButton type="submit" value="buscar" style="width:80px"
+						immediate="true" action="#{modificarProveedor.buscarProveedor()}" />
+
+					<h:outputLabel value="" />
+					<br></br>
+
+					<h:outputLabel value="Nombre Proveedor" />
+
+					<h:inputText id="nombreM"  autocomplete="off"
+						value="#{modificarProveedor.nombreProveedor}"
+						disabled="#{modificarProveedor.proveedorDesabilitado}"
+						required="true"
+						validator="#{modificarProveedor.validarExisteProveedor}">
+						<a4j:ajax event="keyup" execute="@this"></a4j:ajax>
+
+					</h:inputText>
+
+
+					<h:outputLabel value="Nombre" />
+					<h:inputText id="nombre"
+						value="#{modificarProveedor.proveedor.nombre}" required="true"
+						validator="#{modificarProveedor.validarRepeticionProveedor2}">
+						<f:validateRegex pattern="[a-zA-Z ]*" />
+					</h:inputText>
+
+					<br></br>
+					<rich:message for="nombreM" ajaxRendered="true"></rich:message>
+					<h:outputLabel value="" />
+				<rich:message for="nombre" ajaxRendered="false"></rich:message>
+
+
+					<h:outputLabel value="Telefono" />
+					<h:inputText id="telefono"
+						value="#{modificarProveedor.proveedor.telefono}" required="true"
+						validatorMessage="Invalido Eje. 4491234567 ">
+						<f:validateRegex pattern="[0-9]{10}" />
+					</h:inputText>
+
+
+
+
+
+					<h:outputLabel value="E-mail" />
+					<h:inputText id="correo"
+						value="#{modificarProveedor.proveedor.correo}" required="true"
+						validatorMessage="E-mail Invalido">
+						<f:validateRegex
+							pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$"></f:validateRegex>
+					</h:inputText>
+
+
+					<br></br>
+					<rich:message for="telefono" ajaxRendered="false"></rich:message>
+					<h:outputLabel value="" />
+					<rich:message for="correo" ajaxRendered="false"></rich:message>
+
+
+					<h:outputLabel value="Direccion" />
+					<h:inputText id="direccion"
+						value="#{modificarProveedor.proveedor.direccion}" required="true"
+						validatorMessage="Formato Invalido">
+						<f:validateRegex pattern="[a-zA-Z0-9 ]*" />
+					</h:inputText>
+					
+					<h:outputLabel value=""/>
+					<h:outputLabel value=""/>
+
+					<br></br>
+					<rich:message for="direccion" ajaxRendered="false"></rich:message>
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+
+
+
+
+					<h:commandButton type="submit" value="Modificar" style="width:80px"
+						action="#{modificarProveedor.modificarProveedor()}"></h:commandButton>
+					<h:commandButton
+						action="#{modificarProveedor.limpiarModificarProveedor()}"
+						style="width:80px" value="Limpiar" immediate="true" />
+				</h:panelGrid>
+	
+		</rich:panel>
+	  </center>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/11/2011 09:30:22 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="mx.tecno.dto.Compra" table="compra">
+        <id name="autoincremento" type="java.lang.Integer">
+            <column name="autoincremento" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="mx.tecno.dto.Usuario" fetch="select">
+            <column name="usuario_idusuario" not-null="true" />
+        </many-to-one>
+        <many-to-one name="producto" class="mx.tecno.dto.Producto" fetch="select">
+            <column name="producto_idproducto" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

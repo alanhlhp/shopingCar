@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Ventas</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+	<h:link hreflang="#{log.regresar()}"></h:link>
+</h:head>
+
+<h:body>
+
+	<div id="container">
+
+		<div id="nav">
+			<ul>
+				<li><a href="Administrador.xhtml">Volver a Administrador</a></li>
+			</ul>
+		</div>
+
+		<div id="topbox">
+			<h1>* Ventas a Usuarios Registrados *</h1>
+		</div>
+
+		<div id="compra">
+			<h3>Ingresa los Datos Necesarios de la Venta Realizada</h3>
+			<h6>*Todos los campos son necesarios</h6>
+
+			<h:form>
+				<ul>
+
+					<li style="width: 391px;">Ingrese Id Producto: <h:selectOneMenu
+							id="Producto" value="#{venta.idProducto}"
+							valueChangeListener="#{venta.cargaProducto}" onchange="submit();">
+							<f:selectItems value="#{venta.listaItemProducto}" />
+						</h:selectOneMenu>
+					</li>
+					<br />
+					<br />
+					<li style="width: 391px;">Seleccione el Usuario atendido: <h:selectOneMenu
+							id="Usuario" value="#{venta.idUsuario}"
+							valueChangeListener="#{venta.cargaUsuario}" onchange="submit();">
+							<f:selectItems value="#{venta.listaItemUsuario}" />
+						</h:selectOneMenu>
+					</li>
+					<br />
+					<br />
+
+					<li style="width: 430px;">Especifique la Cantidad <h:inputText
+							id="Cantidad" value="#{venta.cantidad}" required="true"
+							validatorMessage="Cantidad Erronea">
+							<f:validateLongRange for="Cantidad" minimum="1" />
+						</h:inputText> <h:message for="Cantidad" style="color:red" />
+					</li>
+					<br />
+					<br />
+
+					<li style="width: 430px;">Fecha de la compra: yyyy-M-d <rich:calendar
+							id="Fecha" datePattern="yyyy-M-d" value="#{venta.fecha}"
+							required="true" validatorMessage="Ingrese Fecha" /> <h:message
+							for="Fecha" style="color:red"></h:message>
+
+					</li>
+					<br />
+					<br />
+
+					<h:outputLabel value="#{venta.ventaHecha}" style="color:red;"></h:outputLabel>
+					<br />
+					<h:commandButton value="Hecho"
+						style="height: 37px; width: 91px; font-weight: bold; float:center"
+						onclick="#{venta.consultaVenta()}" />
+				</ul>
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>

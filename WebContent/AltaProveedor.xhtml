@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Alta de Proveedor</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+</h:head>
+<h:body>
+	<h:form id="formAltaProveedor">
+			<div id="nav" style="width: 1148px; ">
+				<ul>
+					<li><a href="Administrador.xhtml">Volver a Administrador</a></li>
+				</ul>
+			</div>
+
+			<center>
+				<div id="topbox">
+					<h1>* Da de Alta un Proveedor *</h1>
+				</div>
+			</center>
+
+			<center>
+				<rich:panel style="width:930px;height:260px">
+					<f:facet name="header">
+     		   Alta de Proveedor
+               </f:facet>
+
+					<h:graphicImage value="/images/logo.jpg" style="float:right"
+						alt="rf" />
+					<h:panelGrid columns="4">
+
+						<h:outputLabel value="Nombre" />
+						<h:inputText id="nombre" value="#{altaProveedor.proveedor.nombre}"
+							required="true"
+							validator="#{altaProveedor.validarRepeticionProveedor}">
+							<f:validateRegex pattern="[a-zA-Z ]*" />
+						</h:inputText>
+
+						<h:outputLabel value="Telefono" />
+						<h:inputText id="telefono"
+							value="#{altaProveedor.proveedor.telefono}" required="true"
+							validatorMessage="Invalido Eje. 4491234567 ">
+							<f:validateRegex pattern="[0-9]{10}" />
+						</h:inputText>
+
+						<br></br>
+						<rich:message for="nombre" ajaxRendered="false"></rich:message>
+						<h:outputLabel value="" />
+						<rich:message for="telefono" ajaxRendered="false"></rich:message>
+
+						<h:outputLabel value="E-mail" />
+						<h:inputText id="correo" value="#{altaProveedor.proveedor.correo}"
+							required="true" validatorMessage="E-mail Invalido">
+							<f:validateRegex
+								pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+)*$"></f:validateRegex>
+						</h:inputText>
+
+						<h:outputLabel value="Direccion" />
+						<h:inputText id="direccion"
+							value="#{altaProveedor.proveedor.direccion}" required="true"
+							validatorMessage="Formato Invalido">
+							<f:validateRegex pattern="[a-zA-Z0-9 ]*" />
+
+						</h:inputText>
+
+						<br></br>
+						<rich:message for="correo" ajaxRendered="false"></rich:message>
+						<h:outputLabel value="" />
+						<rich:message for="direccion" ajaxRendered="false"></rich:message>
+
+
+						<h:commandButton type="submit" value="Agregar" style="width:80px"
+							action="#{altaProveedor.agregarProveedor()}"></h:commandButton>
+						<h:commandButton action="#{altaProveedor.limpiarAltaProveedor()}"
+							style="width:80px" value="Limpiar" immediate="true" />
+
+					</h:panelGrid>
+			
+
+
+			</rich:panel>
+			</center>
+		</h:form>
+</h:body>
+</html>

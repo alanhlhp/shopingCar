@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Menu Administrador</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+</h:head>
+<h:body>
+
+	<div id="nav" style="width: 1253px; ">
+		<ul>
+			<li style="width: 1211px; "><a href="index.xhtml">Volver a Administrador</a></li>
+		</ul>
+	</div>
+
+
+	<rich:panel>
+		<f:facet name="header">
+      	 Menu Administrador
+        </f:facet>
+
+		<rich:toolbar color="#B7DBEF" height="26px">
+			<rich:dropDownMenu mode="ajax">
+
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Clientes" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem label="Altas"
+					onclick="document.location.href='AltaUsuario.xhtml'" />
+				<rich:menuItem label="Bajas"
+					onclick="document.location.href='EliminarUsuario.xhtml'" />
+				<rich:menuItem label="Cambios"
+					onclick="document.location.href='ModificarUsuario.xhtml'" />
+			</rich:dropDownMenu>
+
+
+			<rich:dropDownMenu mode="ajax">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Productos" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem label="Altas"
+					onclick="document.location.href='AltaProducto.xhtml'" />
+				<rich:menuItem label="Bajas"
+					onclick="document.location.href='EliminarProducto.xhtml'" />
+				<rich:menuItem label="Cambios"
+					onclick="document.location.href='ModificarProducto.xhtml'" />
+			</rich:dropDownMenu>
+
+
+			<rich:dropDownMenu mode="ajax">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Proveedores" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem label="Altas"
+					onclick="document.location.href='AltaProveedor.xhtml'" />
+				<rich:menuItem label="Bajas"
+					onclick="document.location.href='EliminarProveedor.xhtml'" />
+				<rich:menuItem label="Cambios"
+					onclick="document.location.href='ModificarProveedor.xhtml'" />
+			</rich:dropDownMenu>
+			<rich:dropDownMenu mode="ajax">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Consultas" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem
+					onclick="document.location.href='Consulta_compra.xhtml'"
+					label="Consulta Compra" />
+					<rich:menuItem
+					onclick="document.location.href='Consulta_venta.xhtml'"
+					label="Consulta Venta" />
+
+			</rich:dropDownMenu>
+
+			<rich:dropDownMenu mode="ajax">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Compras" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem onclick="document.location.href='Compra.xhtml'"
+					label="Compra Articulos" />
+			</rich:dropDownMenu>
+			
+			<rich:dropDownMenu mode="ajax">
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="Ventas" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem onclick="document.location.href='Venta.xhtml'"
+					label="Venta Cliente" />
+			</rich:dropDownMenu>
+
+
+		</rich:toolbar>
+		<center>
+			<h:graphicImage value="/images/logo.jpg" style="float:center"
+				alt="rf" />
+		</center>
+
+	</rich:panel>
+</h:body>
+</html>

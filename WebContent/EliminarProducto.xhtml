@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Eliminar Producto</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+</h:head>
+<h:body>
+	<h:form id="formEliminarProducto">
+		<div id="nav" style="width: 1177px; ">
+			<ul>
+				<li><a href="Administrador.xhtml">Volver a Administrador</a></li>
+			</ul>
+		</div>
+
+		<center>
+			<div id="topbox">
+				<h1>* Da de Baja un Producto *</h1>
+			</div>
+		</center>
+
+		<center>
+			<rich:panel style="width:930px;height:260px">
+				<f:facet name="header">
+     		   Elimina  Producto
+               </f:facet>
+
+				<h:graphicImage value="/images/logo.jpg" style="float:right"
+					alt="rf" />
+
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Producto" />
+					<h:inputText id="producto" required="true"
+						value="#{eliminarProducto.producto.nombre}"
+						validator="#{eliminarProducto.validarExisteProducto}" />
+					<rich:message for="producto" ajaxRendered="false"></rich:message>
+					<h:outputLabel value="" />
+					<h:commandButton value="Eliminar"
+						action="#{eliminarProducto.eliminarProducto()}" style="width:80px" />
+				</h:panelGrid>
+
+
+
+
+			</rich:panel>
+		</center>
+	</h:form>
+</h:body>
+</html>

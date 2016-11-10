@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Consulta Venta</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+	<h:link hreflang="#{log.regresar()}"></h:link>
+</h:head>
+<h:body>
+	<div id="container">
+		<div id="nav">
+			<ul>
+				<li><a href="Administrador.xhtml">Volver a Administrador</a></li>
+			</ul>
+		</div>
+
+		<div id="topbox">
+			<h1>* Consulta de las ventas realizadas *</h1>
+		</div>
+
+		<div id="compra">
+
+			<h:form id="FormConsultaCompra">
+				<h3>Ingresa los Datos Necesarios De la Venta Realizada</h3>
+				<h6>*Para consultar una compra seleccione la fecha en la que
+					fue hecha la compra</h6>
+
+				<ul>
+					<li>Fecha de la compra yyyy-M-d <rich:calendar id="Fecha"
+							datePattern="yyyy-M-d" value="#{consulta_venta.fecha}"
+							required="true" validatorMessage="Ingrese Fecha"
+							buttonLabel="Seleccione" /> <h:message for="Fecha"
+							style="color:red"></h:message>
+					</li>
+					<br />
+					<li><h:commandButton value="Hecho"
+							onclick="#{consulta_venta.consultaVenta()}"></h:commandButton></li>
+				</ul>
+				<br />
+				<br />
+				<rich:dataTable value="#{consulta_venta.lista}" var="v">
+
+					<f:facet name="header">
+						<h:outputText value="Venta Realizada el dia" />
+					</f:facet>
+
+					<rich:column>
+						<f:facet name="header">Id del Usuario</f:facet>
+						<h:outputText value="#{v.idUsuario}" />
+						<f:facet name="footer">Id del Usuario</f:facet>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Nombre del Usuario</f:facet>
+						<h:outputText value="#{v.nombreUsuario}" />
+						<f:facet name="footer">Nombre del Usuario</f:facet>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">Id del Producto</f:facet>
+						<h:outputText value="#{v.idProducto}" />
+						<f:facet name="footer">Id del Producto</f:facet>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">Nombre del Producto</f:facet>
+						<h:outputText value="#{v.nombreProducto}" />
+						<f:facet name="footer">Nombre del Producto</f:facet>
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">Cantidad de Venta</f:facet>
+						<h:outputText value="#{v.cantidad}" />
+						<f:facet name="footer">Cantidad de Venta</f:facet>
+					</rich:column>
+				</rich:dataTable>
+				<br />
+				<br />
+				<h:outputLabel value="#{consulta_venta.mensajeConsulta}" style="color:red;"/>
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>

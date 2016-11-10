@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Login</title>
+	<link href="login-box.css" rel="stylesheet" type="text/css" />
+</h:head>
+<f:view>
+	<h:body>
+		<h:form>
+			<div style="padding: 100px 0 0 250px;">
+				<div id="login-box">
+					<h1>Login</h1>
+					<br /> <br />
+					<div id="login-box-name" style="margin-top: 20px;">Usuario:</div>
+					<div id="login-box-field" style="margin-top: 20px;">
+						<h:inputText  id="usuario"  value="#{usuario.nombre}" class="form-login"  
+						 required="true" />
+					</div>
+					<div id="login-box-name" style="margin-top: 20px;">Contraseña</div>
+					<div id="login-box-field" style="margin-top: 20px;">
+						<h:inputSecret id="contrasena" value="#{usuario.contra}" class="form-login" 
+						required="true"   />
+					</div>
+    				<br /> <br /> <br />
+					<div align="center">
+						<h:commandButton value="Ingresar" action="#{usuario.validarUsuario}"></h:commandButton>
+					    <rich:message for="usuario" />
+					    <rich:message for="contrasena" />
+					    
+					</div>
+				</div>
+				
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
+</ui:composition>

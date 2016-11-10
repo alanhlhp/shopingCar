@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Alta de Usuario</title>
+	<link rel="stylesheet" type="text/css" href="default.css" />
+</h:head>
+<h:body>
+	<h:form id="formAltaUsuario">
+		<div id="nav" style="width: 1175px; ">
+			<ul>
+				<li><a href="Administrador.xhtml">Volver a Administrador</a></li>
+			</ul>
+		</div>
+
+		<center>
+			<div id="topbox">
+				<h1>* Da de Alta un Usuario *</h1>
+			</div>
+		</center>
+
+		<center>
+			<rich:panel style="width:930px;height:260px">
+				<f:facet name="header">
+     		   Alta de Usuario
+               </f:facet>
+
+				<h:graphicImage value="/images/logo.jpg" style="float:right"
+					alt="rf" />
+				<h:panelGrid columns="4">
+
+					<h:outputLabel value="Nombre" />
+					<h:inputText id="nombre" value="#{altaUsuario.usuario.nombre}"
+						required="true" validatorMessage="Formato Invalido">
+						<f:validateRegex pattern="[a-zA-Z]*" />
+					</h:inputText>
+
+					<h:outputLabel value="Apellido" />
+					<h:inputText id="apellido" value="#{altaUsuario.usuario.apellido}"
+						required="true" validatorMessage="Formato Invalido">
+						<f:validateRegex pattern="[a-zA-Z]*" />
+					</h:inputText>
+
+					<br></br>
+					<rich:message for="nombre" ajaxRendered="false"></rich:message>
+					<h:outputLabel value="" />
+					<rich:message for="apellido" ajaxRendered="false"></rich:message>
+
+					<h:outputLabel value="Direccion" />
+					<h:inputText id="direccion"
+						value="#{altaUsuario.usuario.direccion}" required="true"
+						validatorMessage="Formato Invalido">
+						<f:validateRegex pattern="[a-zA-Z0-9 ]*" />
+					</h:inputText>
+
+					<h:outputLabel value="Telefono" />
+					<h:inputText id="telefono" value="#{altaUsuario.usuario.telefono}"
+						required="true" validatorMessage="Invalido Eje. 4491234567 ">
+						<!--  			<f:validateRegex pattern="(([+]{1})+[0-9]{12})" /> -->
+						<f:validateRegex pattern="[0-9]{10}" />
+
+					</h:inputText>
+
+					<br></br>
+					<rich:message for="direccion" ajaxRendered="false"></rich:message>
+					<h:outputLabel value="" />
+					<rich:message for="telefono" ajaxRendered="false"></rich:message>
+
+					<h:outputLabel value="Tipo Usuario"></h:outputLabel>
+					<h:selectOneMenu id="tipoUsuario"
+						value="#{altaUsuario.tipoUsuario}" required="true"
+						style="width:128px">
+						<f:selectItem itemLabel="" itemValue=""></f:selectItem>
+						<f:selectItem itemLabel="Administrador" itemValue="1"></f:selectItem>
+						<f:selectItem itemLabel="Cliente" itemValue="0"></f:selectItem>
+
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Usuario" />
+					<h:inputText id="nick" value="#{altaUsuario.usuario.usuario}"
+						required="true"
+						validator="#{altaUsuario.validarRepeticionUsuario}">
+					</h:inputText>
+
+					<br></br>
+					<rich:message for="tipoUsuario" ajaxRendered="false"></rich:message>
+					<h:outputLabel value="" />
+					<rich:message for="nick" ajaxRendered="false"></rich:message>
+
+					<h:outputLabel value="Contraseña" />
+					<h:inputSecret id="contraseña"
+						value="#{altaUsuario.usuario.password}" required="true"
+						validatorMessage="Numeros y Letras">
+						<f:validateRegex pattern="[a-zA-Z0-9]*" />
+					</h:inputSecret>
+
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+
+
+					<br></br>
+					<rich:message for="contraseña" ajaxRendered="false"></rich:message>
+					<h:outputLabel value="" />
+					<h:outputLabel value="" />
+
+
+
+					<h:commandButton type="submit" value="Agregar" style="width:80px"
+						action="#{altaUsuario.agregarUsuario()}"></h:commandButton>
+					<h:commandButton action="#{altaUsuario.limpiarAltaUsuario()}"
+						style="width:80px" value="Limpiar" immediate="true" />
+
+				</h:panelGrid>
+
+
+
+			</rich:panel>
+		</center>
+	</h:form>
+</h:body>
+</html>

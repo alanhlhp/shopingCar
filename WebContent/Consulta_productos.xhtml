@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Consulta de Productos</title>
+	<link href="default.css" type="text/css" rel="stylesheet" />
+	<h:link hreflang="#{log.regresar()}"></h:link>
+</h:head>
+
+<h:body id="body">
+	<h:form id="form">
+	<div id="form">
+	<a href="index.xhtml">Regresar y Salir</a>
+	</div>
+		<div id="topbox">
+			<table id="table">
+				<tr>
+					<td>Seleccione Categoría</td><br/>
+					<td><h:selectOneMenu value="#{consulta.categoria}"
+							valueChangeListener="#{consulta.carga}" onchange="submit();">
+							<f:selectItems value="#{consulta.listItem}" />
+						</h:selectOneMenu></td>
+						
+					<td>
+						<h1>Productos</h1> 
+						<h:dataTable value="#{consulta.listaProductos}"
+							var="p" border="1" style="width: 689px;" binding="#{consulta.tabla}">
+							
+							<h:column>
+								<h4>
+									<h:outputText value="#{p.idproducto}"></h:outputText>
+								</h4>
+								<h2>
+									<f:facet name="header">Id producto</f:facet>
+								</h2>
+							</h:column>
+							
+							<h:column>
+								<h4>
+									<h:outputText value="#{p.nombre}"></h:outputText>
+								</h4>
+								<h2>
+									<f:facet name="header">Nombre</f:facet>
+								</h2>
+							</h:column>
+							<h:column>
+								<h4>
+									<h:outputText value="#{p.modelo}"></h:outputText>
+								</h4>
+								<f:facet name="header">Modelo</f:facet>
+							</h:column>
+							<h:column>
+								<h4>
+									<h:outputText value="#{p.marca}"></h:outputText>
+								</h4>
+								<f:facet name="header">Marca</f:facet>
+							</h:column>
+							<h:column>
+								<h4>
+									<h:outputText value="#{p.precioUnitario}"></h:outputText>
+								</h4>
+								<f:facet name="header">Precio</f:facet>
+							</h:column>
+							<h:column>
+								<h:commandLink action="#{consulta.seleccionLista()}"> Detalles</h:commandLink>
+							</h:column>
+						</h:dataTable>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</h:form>
+	<br/>
+	<br/>
+	<h:form id="topbox">
+	<h:outputLabel for="idproducto" >ID: </h:outputLabel>
+	<h:outputText id="idproducto" value="#{consulta.producto.idproducto}" ></h:outputText><br/><br/>
+	<h:outputLabel for="nombre">Nombre: </h:outputLabel>
+	<h:outputText id="nombre" value="#{consulta.producto.nombre}" ></h:outputText><br/><br/>
+	<h:outputLabel for="modelo">Modelo: </h:outputLabel>
+	<h:outputText id="modelo" value="#{consulta.producto.modelo}" ></h:outputText><br/><br/>
+	<h:outputLabel for="marca">Marca: </h:outputLabel>
+	<h:outputText id="marca" value="#{consulta.producto.marca}" ></h:outputText><br/><br/>
+	<h:outputLabel for="existencia">Existencia: </h:outputLabel>
+	<h:outputText id="existencia" value="#{consulta.producto.existencia}" ></h:outputText>	<br/><br/>
+	<h:outputLabel for="detalles">Detalles: </h:outputLabel>
+	<h:outputText id="detalles" value="#{consulta.producto.detalles}" ></h:outputText><br/><br/>
+	<h:outputLabel for="precioUnitario">Precio unitario: $</h:outputLabel>
+	<h:outputText id="precioUnitario" value="#{consulta.producto.precioUnitario}" ></h:outputText><br/><br/>
+	<h:outputLabel for="categoria">Categoria: </h:outputLabel>
+	<h:outputText id="categoria" value="#{consulta.producto.categoria}" ></h:outputText><br/><br/>
+	 
+	</h:form>
+	
+</h:body>
+</html>
